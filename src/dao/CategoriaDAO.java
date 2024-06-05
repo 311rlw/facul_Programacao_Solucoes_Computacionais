@@ -35,7 +35,7 @@ public class CategoriaDAO {
             ps.setString(1,categoria.nome);
             ps.setInt(2, categoria.id);
             ps.execute();
-            Conexao.fecharConn(conn);
+//            Conexao.fecharConn(conn);
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString() );
@@ -51,7 +51,7 @@ public class CategoriaDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idCategoria);
             ps.execute();
-            Conexao.fecharConn(conn);
+//            Conexao.fecharConn(conn);
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString() );

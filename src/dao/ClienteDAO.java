@@ -39,7 +39,7 @@ public class ClienteDAO {
             ps.setInt(3, cliente.cidade.id);
             ps.setInt(4, cliente.id);
             ps.execute();
-            Conexao.fecharConn(conn);
+//            Conexao.fecharConn(conn);
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString() );
@@ -55,7 +55,7 @@ public class ClienteDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idCliente);
             ps.execute();
-            Conexao.fecharConn(conn);
+//            Conexao.fecharConn(conn);
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString() );

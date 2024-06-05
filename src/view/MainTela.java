@@ -51,7 +51,6 @@ public class MainTela {
                     cidades = CidadeDAO.getCidades();
                     cadastrarCliente(cidades);
                 }else{
-//                  clientes.add(cadastrarCliente(cidades));
                     cadastrarCliente(cidades);
                 }    
                 break;
@@ -61,11 +60,15 @@ public class MainTela {
                 break;
             
             case 4: 
+                categorias = CategoriaDAO.getCategorias();
+                
                 if (categorias.size() == 0 ){
                     JOptionPane.showMessageDialog(null, "Necessário cadastrar categoria!");
+                    cadastrarCategoria();
+                    categorias = CategoriaDAO.getCategorias();
+                    cadastrarProduto(categorias);
                     break;
                 }else{
-                    CategoriaDAO.getCategorias();
                     cadastrarProduto(categorias);
                     break;
                 }
@@ -132,6 +135,22 @@ public class MainTela {
             
             case 12:
                 visualizarPedido(pedidos);
+                break;
+            
+            case 13:
+                excluirCidade();
+                break;
+                
+            case 14:
+                excluirCliente();
+                break;
+            
+            case 15:
+                excluirCategoria();
+                break;
+            
+            case 16:
+                excluirProdutos();
                 break;
             
             default:
@@ -227,6 +246,10 @@ public class MainTela {
                        "10 - Adicionar Produtos ao Pedido\n " +
                        "11 - Listar Pedidos\n " +
                        "12 - Visualizar Pedido\n " +
+                       "13 - Excluir Cidade\n " +
+                       "14 - Excluir Cliente\n " +
+                       "15 - Excluir Categoria\n " +
+                       "16 - Excluir Produto\n " +
                        "0 - Sair\n "+
                        "\nDigite a opção desejada: ";
         int opcao = -1;
@@ -422,4 +445,72 @@ public class MainTela {
 		}
 		JOptionPane.showMessageDialog(null, texto);
         }
+    
+    public static void excluirCidade(){
+        List<Cidade> cidades = CidadeDAO.getCidades();
+        String texto = "Cidades Cadastradas: ";
+        for (Cidade cidade: cidades){
+            texto += "\n" + cidade.id + " - " + cidade.nome;
+        }
+        
+        texto += "\n Digite o ID da cidade que deseja excluir";
+        String idDigitado = JOptionPane.showInputDialog(texto);
+        if ( idDigitado.isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Digite um ID válido");
+        }else{
+            int idCidade = Integer.valueOf(idDigitado);
+            CidadeDAO.excluir(idCidade);
+        }
     }
+    
+    public static void excluirCliente(){
+        List<Cliente> clientes = ClienteDAO.getClientes();
+        String texto = "Clientes Cadastrados: ";
+        for (Cliente cliente: clientes){
+            texto += "\n" + cliente.id + " - " + cliente.nome;
+        }
+        
+        texto += "\n Digite o ID do cliente que deseja excluir";
+        String idDigitado = JOptionPane.showInputDialog(texto);
+        if ( idDigitado.isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Digite um ID válido");
+        }else{
+            int idCliente = Integer.valueOf(idDigitado);
+            ClienteDAO.excluir(idCliente);
+        }
+    }
+    
+    public static void excluirCategoria(){
+        List<Categoria> categorias = CategoriaDAO.getCategorias();
+        String texto = "Categorias Cadastradas: ";
+        for (Categoria categoria: categorias){
+            texto += "\n" + categoria.id + " - " + categoria.nome;
+        }
+        
+        texto += "\n Digite o ID da cidade que deseja excluir";
+        String idDigitado = JOptionPane.showInputDialog(texto);
+        if ( idDigitado.isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Digite um ID válido");
+        }else{
+            int idCategoria = Integer.valueOf(idDigitado);
+            CategoriaDAO.excluir(idCategoria);
+        }
+    }
+    public static void excluirProdutos(){
+        List<Produto> produtos = ProdutoDAO.getProduto();
+        String texto = "Produtos Cadastrados: ";
+        for (Produto produto: produtos){
+            texto += "\n" + produto.id + " - " + produto.nome;
+        }
+        
+        texto += "\n Digite o ID do produto que deseja excluir";
+        String idDigitado = JOptionPane.showInputDialog(texto);
+        if ( idDigitado.isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Digite um ID válido");
+        }else{
+            int idProduto = Integer.valueOf(idDigitado);
+            ProdutoDAO.excluir(idProduto);
+        }
+    }
+
+}

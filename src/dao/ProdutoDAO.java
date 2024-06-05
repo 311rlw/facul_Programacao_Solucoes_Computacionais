@@ -41,7 +41,7 @@ public class ProdutoDAO {
             ps.setInt(4,produto.categoria.id);
             ps.setInt(5,produto.id);
             ps.execute();
-            Conexao.fecharConn(conn);
+//            Conexao.fecharConn(conn);
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString() );
@@ -57,7 +57,7 @@ public class ProdutoDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idProduto);
             ps.execute();
-            Conexao.fecharConn(conn);
+//            Conexao.fecharConn(conn);
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString() );
